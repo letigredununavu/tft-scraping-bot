@@ -207,6 +207,65 @@ def create_match_image(all_comps, all_traits, all_stars):
 
 
 
+@client.command()
+async def comps(ctx):
+
+    page = requests.get(f'https://lolchess.gg/meta')
+    soup = BeautifulSoup(page.content, 'html.parser')
+    titles = soup.find_all("div", class_='guide-meta__deck__column name mr-3', limit=5)
+    print(titles)
+    message = "the bests comps in the current meta are:\n"
+    for title in titles:
+        message += f'{[l for l in title.stripped_strings][0]}\n'
+
+    await ctx.send(message)
+
+
+@client.command()
+async def items(ctx, *, champion):
+    
+    page = requests.get(f'https://lolchess.gg/statistics/items')
+    soup = BeautifulSoup(page.content, 'html.parser')
+    champions = []
+    all_items = []
+    champs_pics = []
+    balises = soup.find_all("tr")
+    for balise in balises:
+        chp = balise.find("span")
+        if chp != None:
+            champions.append(chp.get_text())
+            champs_pics.append(balise.find("img", class_ = "mr-1")['src'])
+            items = []
+            items_div = balise.find_all("td", class_ = "items")
+            if items_div != None:
+                for item in items_div:
+                    name = item.find("span", class_ = 'name')
+                    items.append(name.get_text())
+                all_items.append(items)
+        else:
+            print("nothing to see here")
+
+    # print(all_items)
+    if champion in champions:
+        
+        index = champions.index(champion)
+        chp_pic = champs_pics[index]
+        emb = discord.Embed(
+            title = f'Items for {champion}'
+
+        )
+        
+        emb.set_thumbnail(url="https:{}".format(chp_pic))
+        
+        for i in range(len(all_items[index])):
+            emb.add_field(name = f'Item #{i+1}', value = all_items[index][i], inline=True)
+
+        
+        
+        await ctx.send(embed=emb)
+    else:
+        await ctx.send('Incorrect champion')
+        
 
 
 @client.event
