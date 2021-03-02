@@ -5,7 +5,7 @@ A discord bot to scrap tft player data from lolchess.gg
 
 #player
 
-Show the rank, lp and 5 last matches history
+Show the rank, lp and 5 last matches history of a certain player in NA
 
 ![playerTahm](https://user-images.githubusercontent.com/71415872/109667083-b3018000-7b67-11eb-988f-e81164b94482.png)
 
