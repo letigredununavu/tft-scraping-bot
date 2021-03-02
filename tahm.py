@@ -7,7 +7,7 @@ from io import BytesIO
 import urllib
 
 
-token = "ODEzOTEwNDg3MTQxMDU2NTEy.YDWLNQ.seIsXTo9RmuOHUbk4dLMxRzo9D8"
+token = "your token"
 
 
 client = commands.Bot(command_prefix = '#', help_command=None)
