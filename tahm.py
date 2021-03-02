@@ -160,6 +160,8 @@ def create_match_image(all_comps, all_traits, all_stars):
                 background.paste(synergy, (width, height))
                 width += synergy.width + 10
 
+                
+        # Stars
         start_width = 132
         for star in stars:
             STAR_WIDTH = 64
@@ -177,6 +179,7 @@ def create_match_image(all_comps, all_traits, all_stars):
         
         start_width = 100
 
+        # Champs
 
         for champ in comp:
             CHAMP_WIDTH = 128
