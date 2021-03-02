@@ -12,11 +12,6 @@ token = "your token"
 
 client = commands.Bot(command_prefix = '#', help_command=None)
 
-# TODO
-def get_top_10_comps():
-    pass
-
-
 region = 'na'
 
 @client.command()
